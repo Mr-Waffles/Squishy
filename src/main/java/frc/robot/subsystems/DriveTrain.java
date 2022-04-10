@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -13,11 +14,13 @@ import frc.robot.Constants;
 public class DriveTrain extends SubsystemBase {
 
   private DifferentialDrive RobotDrive;
-  private final CANSparkMax leftPrimary = new CANSparkMax(Constants.CANLeftPimrary, MotorType.kBrushless);
-  private final CANSparkMax leftFollower = new CANSparkMax(Constants.CANLeftFollower, MotorType.kBrushless);
+  private final CANSparkMax leftPrimary = new CANSparkMax(Constants.CANids.leftPrimary.value, MotorType.kBrushless);
+  private final CANSparkMax leftFollower = new CANSparkMax(Constants.CANids.leftFollower.value, MotorType.kBrushless);
 
-  private final CANSparkMax rightPrimary = new CANSparkMax(Constants.CANRightPimrary, MotorType.kBrushless);
-  private final CANSparkMax rightFollower = new CANSparkMax(Constants.CANRightFollower, MotorType.kBrushless);
+  private final CANSparkMax rightPrimary = new CANSparkMax(Constants.CANids.rightPrimary.value, MotorType.kBrushless);
+  private final CANSparkMax rightFollower = new CANSparkMax(Constants.CANids.rightFollower.value, MotorType.kBrushless);
+
+  public IdleMode idleMode;
 
 
   /** Creates a new DriveTrain. */
@@ -26,6 +29,7 @@ public class DriveTrain extends SubsystemBase {
 
     setFollowers();
     setInverted();
+    setNutralMode(IdleMode.kBrake);
   }
 
   /**
@@ -45,6 +49,14 @@ public class DriveTrain extends SubsystemBase {
   private void setInverted() {
     rightPrimary.setInverted(false);
     leftPrimary.setInverted(true);
+  }
+  
+  public void setNutralMode(IdleMode mode) {
+    leftPrimary.setIdleMode(mode);
+    leftFollower.setIdleMode(mode);
+    rightPrimary.setIdleMode(mode);
+    rightFollower.setIdleMode(mode);
+    idleMode = mode;
   }
 
   public void stop() {

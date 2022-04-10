@@ -13,8 +13,28 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static int CANLeftPimrary = 1;
-    public static int CANRightPimrary = 2;
-    public static int CANLeftFollower = 2;
-    public static int CANRightFollower = 4;
+    public enum CANids {
+        leftPrimary(1),
+        leftFollower(3),
+        rightPrimary(2),
+        rightFollower(4);
+
+        public final int value;
+
+        private CANids(int value) {
+            this.value = value;
+        }
+
+    }
+
+    public enum Ports {
+        DriverXbox(0),
+        ManiplulatorXbox(1);
+
+        public final int value;
+
+        private Ports(int value) {
+            this.value = value;
+        }
+    }
 }

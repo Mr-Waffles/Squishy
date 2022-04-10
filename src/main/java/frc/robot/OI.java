@@ -5,11 +5,13 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.ToggleIdleMode;
 
 /** Add your docs here. */
 public class OI {
 
-    private static final XboxController DriverXbox = new XboxController(0);
+    private static final XboxController DriverXbox = new XboxController(Constants.Ports.DriverXbox.value);
 
     public static double getY() {
         return DriverXbox.getLeftY();
@@ -20,6 +22,6 @@ public class OI {
     }
 
     public void mapButtons () {
-        return;
+        new JoystickButton(DriverXbox, XboxController.Button.kB.value).whenPressed(new ToggleIdleMode());
     }
 }

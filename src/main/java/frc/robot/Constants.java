@@ -14,7 +14,7 @@ package frc.robot;
  */
 public final class Constants {
     public enum CANids {
-        leftPrimary(1),
+        leftPrimary(1), //the can IDs for the different motors
         leftFollower(3),
         rightPrimary(2),
         rightFollower(4);
@@ -28,12 +28,27 @@ public final class Constants {
     }
 
     public enum Ports {
-        DriverXbox(0),
-        ManiplulatorXbox(1);
+        DriverXbox(0), // the port on the driver station linked to this controller.
+        ManipulatorXbox(1); // the port on the driver station linked to this controller.
 
         public final int value;
 
         private Ports(int value) {
+            this.value = value;
+        }
+    }
+
+    public enum Dimensions {
+        wheelDiameter(7), //wheel Diameter in inches.
+        wheelCircumference(wheelDiameter.value*Math.PI);
+
+        public final double value;
+
+        private Dimensions(int value) {
+            this.value = value;
+        }
+
+        private Dimensions(double value) {
             this.value = value;
         }
     }

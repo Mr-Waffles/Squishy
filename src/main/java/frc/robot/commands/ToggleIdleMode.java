@@ -21,9 +21,9 @@ public class ToggleIdleMode extends InstantCommand {
   @Override
   public void initialize() {
     if (RobotContainer.driveTrain.idleMode == IdleMode.kBrake) {
-      RobotContainer.driveTrain.setNutralMode(IdleMode.kCoast);
+      RobotContainer.driveTrain.setNeutralMode(IdleMode.kCoast);
     } else {
-      RobotContainer.driveTrain.setNutralMode(IdleMode.kBrake);
+      RobotContainer.driveTrain.setNeutralMode(IdleMode.kBrake);
     }
   }
 }

@@ -29,7 +29,7 @@ public class DriveTrain extends SubsystemBase {
 
     setFollowers();
     setInverted();
-    setNutralMode(IdleMode.kBrake);
+    setNeutralMode(IdleMode.kBrake);
   }
 
   /**
@@ -51,7 +51,7 @@ public class DriveTrain extends SubsystemBase {
     leftPrimary.setInverted(true);
   }
   
-  public void setNutralMode(IdleMode mode) {
+  public void setNeutralMode(IdleMode mode) {
     leftPrimary.setIdleMode(mode);
     leftFollower.setIdleMode(mode);
     rightPrimary.setIdleMode(mode);

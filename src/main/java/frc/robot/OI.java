@@ -6,7 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.ToggleIdleMode;
+import frc.robot.commands.VisionAim;
 
 /** Add your docs here. */
 public class OI {
@@ -22,6 +22,6 @@ public class OI {
     }
 
     public void mapButtons () {
-        new JoystickButton(DriverXbox, XboxController.Button.kB.value).whenPressed(new ToggleIdleMode());
+        new JoystickButton(DriverXbox, XboxController.Button.kRightBumper.value).whileHeld(new VisionAim());
     }
 }

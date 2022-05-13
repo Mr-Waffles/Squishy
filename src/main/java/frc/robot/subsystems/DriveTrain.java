@@ -8,6 +8,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -38,7 +39,7 @@ public class DriveTrain extends SubsystemBase {
    * @param zRotation the rotation value
    */
   public void drive(double xSpeed, double zRotation) {
-    RobotDrive.arcadeDrive(xSpeed, zRotation, true);
+    RobotDrive.arcadeDrive(-xSpeed, -zRotation, true);
   }
 
   public void setFollowers() {
@@ -46,9 +47,11 @@ public class DriveTrain extends SubsystemBase {
     rightFollower.follow(rightPrimary);
   }
 
-  private void setInverted() {
-    rightPrimary.setInverted(false);
-    leftPrimary.setInverted(true);
+  public double[] getEncoderRotations() {
+    return new double[] {
+      leftPrimary.getEncoder().getPosition(),
+      rightPrimary.getEncoder().getPosition()
+    };
   }
   
   public void setNeutralMode(IdleMode mode) {
@@ -63,8 +66,14 @@ public class DriveTrain extends SubsystemBase {
     RobotDrive.stopMotor();
   }
 
+  private void setInverted() {
+    rightPrimary.setInverted(true);
+    leftPrimary.setInverted(false);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("encoderRotations", getEncoderRotations()[1]);
   }
 }

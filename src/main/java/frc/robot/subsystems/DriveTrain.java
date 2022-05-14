@@ -10,16 +10,16 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import static frc.robot.Constants.CANids;
 
 public class DriveTrain extends SubsystemBase {
 
   private DifferentialDrive RobotDrive;
-  private final CANSparkMax leftPrimary = new CANSparkMax(Constants.CANids.leftPrimary.value, MotorType.kBrushless);
-  private final CANSparkMax leftFollower = new CANSparkMax(Constants.CANids.leftFollower.value, MotorType.kBrushless);
+  private final CANSparkMax leftPrimary = new CANSparkMax(CANids.leftPrimary.value, MotorType.kBrushless);
+  private final CANSparkMax leftFollower = new CANSparkMax(CANids.leftFollower.value, MotorType.kBrushless);
 
-  private final CANSparkMax rightPrimary = new CANSparkMax(Constants.CANids.rightPrimary.value, MotorType.kBrushless);
-  private final CANSparkMax rightFollower = new CANSparkMax(Constants.CANids.rightFollower.value, MotorType.kBrushless);
+  private final CANSparkMax rightPrimary = new CANSparkMax(CANids.rightPrimary.value, MotorType.kBrushless);
+  private final CANSparkMax rightFollower = new CANSparkMax(CANids.rightFollower.value, MotorType.kBrushless);
 
   public IdleMode idleMode;
 

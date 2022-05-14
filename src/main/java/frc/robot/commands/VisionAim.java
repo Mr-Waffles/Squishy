@@ -5,7 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
+import static frc.robot.RobotContainer.driveTrain;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.networktables.NetworkTable;
@@ -23,7 +23,7 @@ public class VisionAim extends CommandBase {
   /** Creates a new VisionAim. */
   public VisionAim() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.driveTrain);
+    addRequirements(driveTrain);
   }
 
   // Called when the command is initially scheduled.
@@ -43,7 +43,7 @@ public class VisionAim extends CommandBase {
     double tSpeed = -(pid.calculate(x));
 
     SmartDashboard.putNumber("LimeLightX", x);
-    RobotContainer.driveTrain.drive(0, tSpeed);
+    driveTrain.drive(0, tSpeed);
   }
 
   // Called once the command ends or is interrupted.

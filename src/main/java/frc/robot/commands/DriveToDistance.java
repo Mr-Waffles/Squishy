@@ -4,10 +4,10 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import static edu.wpi.first.wpilibj.smartdashboard.SmartDashboard.putNumber;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.RobotContainer;
+import frc.robot.Constants.Dimensions;
+import static frc.robot.RobotContainer.driveTrain;
 
 public class DriveToDistance extends CommandBase {
 
@@ -24,35 +24,39 @@ public class DriveToDistance extends CommandBase {
   public DriveToDistance(double DriveSpeed, double DriveDistance) {
     // Use addRequirements() here to declare subsystem dependencies.
     isFinished=false;
-    addRequirements(RobotContainer.driveTrain);
+    addRequirements(driveTrain);
     driveSpeed = DriveSpeed;
     inchesDistance = DriveDistance;
     driveDistance = (inchesDistance / 
-    Constants.Dimensions.wheelCircumference.value / 
-    Constants.Dimensions.gearRatio.value)
-    + RobotContainer.driveTrain.getEncoderRotations()[1];
+    Dimensions.wheelCircumference.value / 
+    Dimensions.gearRatio.value)
+    + driveTrain.getEncoderRotations()[1];
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    SmartDashboard.putNumber("inches", inchesDistance);
+    putNumber("inches", inchesDistance);
+    driveDistance = (inchesDistance / 
+    Dimensions.wheelCircumference.value / // result is the number of rotations to cover inchesDistance
+    Dimensions.gearRatio.value) // result is the number of motor rotations to cover inchesDistance
+    + driveTrain.getEncoderRotations()[1];
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.driveTrain.drive(-driveSpeed, 0);
-    SmartDashboard.putNumber("driveDistance", driveDistance);
-    SmartDashboard.putNumber("distance", RobotContainer.driveTrain.getEncoderRotations()[1]);
-    if (RobotContainer.driveTrain.getEncoderRotations()[1] > driveDistance) isFinished=true;
+    driveTrain.drive(-driveSpeed, 0);
+    putNumber("driveDistance", driveDistance);
+    putNumber("distance", driveTrain.getEncoderRotations()[1]);
+    if (driveTrain.getEncoderRotations()[1] > driveDistance) isFinished=true;
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    System.out.println("ended"+interrupted);
-    RobotContainer.driveTrain.stop();
+    System.out.println("ended "+interrupted);
+    driveTrain.stop();
   }
 
   // Returns true when the command should end.

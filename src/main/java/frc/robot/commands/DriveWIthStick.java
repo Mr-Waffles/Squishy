@@ -6,7 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.OI;
-import frc.robot.RobotContainer;
+import static frc.robot.RobotContainer.driveTrain;;
 
 public class DriveWIthStick extends CommandBase {
 
@@ -14,7 +14,7 @@ public class DriveWIthStick extends CommandBase {
   public DriveWIthStick() {
     // Use addRequirements() here to declare subsystem dependencies.
     super();
-    addRequirements(RobotContainer.driveTrain);
+    addRequirements(driveTrain);
   }
 
   // Called when the command is initially scheduled.
@@ -24,13 +24,13 @@ public class DriveWIthStick extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.driveTrain.drive(OI.getY(), OI.getX());
+    driveTrain.drive(OI.getY(), OI.getX());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.driveTrain.stop();
+    driveTrain.stop();
   }
 
   // Returns true when the command should end.

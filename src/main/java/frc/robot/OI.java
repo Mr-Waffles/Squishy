@@ -8,11 +8,12 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveToDistance;
 import frc.robot.commands.VisionAim;
+import static frc.robot.Constants.Ports;
 
 /** Add your docs here. */
 public class OI {
 
-    private static final XboxController DriverXbox = new XboxController(Constants.Ports.DriverXbox.value);
+    private static final XboxController DriverXbox = new XboxController(Ports.DriverXbox.value);
 
     public static double getY() {
         return DriverXbox.getLeftY();

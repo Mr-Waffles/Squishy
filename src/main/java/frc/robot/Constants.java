@@ -41,7 +41,7 @@ public final class Constants {
     public enum Dimensions {
         wheelDiameter(7.5), //wheel Diameter in inches.
         wheelCircumference(wheelDiameter.value*Math.PI),
-        gearRatio(1/12.75);
+        gearRatio(10.71);
 
         public final double value;
 
